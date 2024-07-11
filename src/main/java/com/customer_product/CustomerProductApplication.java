@@ -96,12 +96,15 @@ public class CustomerProductApplication implements CommandLineRunner{
 		orderService.save(o2);
 		orderService.save(o3);
 
-		orders2 = orderService.findAllWithProducts();
-		orders.forEach(o -> {
-			System.out.println(o);
-			o.getProducts().forEach(System.out::println);
-			System.out.println("");
-		});
+		List<Orders> orders3 = orderService.findAllWithProducts();
+        
+        for (Orders order : orders3) {
+            System.out.println("Order ID: " + order.getId());
+            for (Product product : order.getProducts()) {
+                System.out.println("  Product ID: " + product.getId() + ", Name: " + product.getName());
+            }
+            System.out.println();
+        }
 
 		
 	}
